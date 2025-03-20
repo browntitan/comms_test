@@ -21,7 +21,7 @@
     import DeleteConfirmDialog from '$lib/components/common/ConfirmDialog.svelte';
     import Tooltip from '$lib/components/common/Tooltip.svelte';
     import Spinner from '$lib/components/common/Spinner.svelte';
-    import UseCaseMenu from './UseCaseMenu.svelte';
+    import UseCaseMenu from './usecases/UseCaseMenu.svelte';
     import { capitalizeFirstLetter } from '$lib/utils';
 
     const i18n = getContext('i18n');
@@ -44,7 +44,8 @@
 
         const url = 'https://openwebui.com';
 
-        const tab = await window.open(`${url}/test/usecases/create`, '_blank');
+        // If your external community route should also use a hyphen, update here accordingly.
+        const tab = await window.open(`${url}/usecases/create`, '_blank');
         window.addEventListener(
             'message',
             (event) => {
@@ -59,7 +60,8 @@
 
     const cloneHandler = async (use_case) => {
         sessionStorage.use_case = JSON.stringify(use_case);
-        goto('/test/usecases/create');
+        // Updated route to include the hyphen
+        goto('/workspace/use-cases/create');
     };
 
     const exportHandler = async (use_case) => {
@@ -132,9 +134,10 @@
                 </div>
 
                 <div>
+                    <!-- Updated create link route -->
                     <a
                         class="px-2 py-2 rounded-xl hover:bg-gray-700/10 dark:hover:bg-gray-100/10 dark:text-gray-300 dark:hover:text-white transition font-medium text-sm flex items-center space-x-1"
-                        href="/test/usecases/create"
+                        href="/workspace/use-cases/create"
                     >
                         <Plus className="size-3.5" />
                     </a>
@@ -148,7 +151,8 @@
                     class="flex space-x-4 cursor-pointer w-full px-3 py-2 dark:hover:bg-white/5 hover:bg-black/5 rounded-xl transition"
                 >
                     <div class="flex flex-1 space-x-4 cursor-pointer w-full">
-                        <a href={`/test/usecases/edit?command=${encodeURIComponent(use_case.command)}`}>
+                        <!-- Updated edit link route -->
+                        <a href={`/workspace/use-cases/edit?command=${encodeURIComponent(use_case.command)}`}>
                             <div class="flex-1 flex items-center gap-2 self-center">
                                 <div class="font-semibold line-clamp-1 capitalize">{use_case.title}</div>
                                 <div class="text-xs overflow-hidden text-ellipsis line-clamp-1">
@@ -174,10 +178,11 @@
                         </a>
                     </div>
                     <div class="flex flex-row gap-0.5 self-center">
+                        <!-- Updated edit link route -->
                         <a
                             class="self-center w-fit text-sm px-2 py-2 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 rounded-xl"
                             type="button"
-                            href={`/test/usecases/edit?command=${encodeURIComponent(use_case.command)}`}
+                            href={`/workspace/use-cases/edit?command=${encodeURIComponent(use_case.command)}`}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
